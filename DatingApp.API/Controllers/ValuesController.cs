@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.API.Controllers
 {
+    //GET http://localhost:5000/api/values - pierwsza czesc nazwy kontrolera czyli values leci na koniec taka konwencja
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
