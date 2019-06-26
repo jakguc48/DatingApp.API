@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers
 {
@@ -27,11 +28,24 @@ namespace DatingApp.API.Controllers
         //    return new string[] { "value1", "value2" };
         //}
 
+        // GET api/values
+        //[HttpGet]
+        //public IActionResult GetValues()
+        //{
+        //    //pobieramy z contekstu
+        //    var values = _context.Values.ToList();
+
+        //    //zwracamy http response
+        //    return Ok(values);
+        //}
+
+        //zastepujemy kodsynchroniczny asynchronicznym
+        // GET api/values
         [HttpGet]
-        public IActionResult GetValues()
+        public async Task<IActionResult> GetValues()
         {
             //pobieramy z contekstu
-            var values = _context.Values.ToList();
+            var values = await _context.Values.ToListAsync();
 
             //zwracamy http response
             return Ok(values);
@@ -39,9 +53,9 @@ namespace DatingApp.API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult GetValue(int id)
+        public async Task<IActionResult> GetValue(int id)
         {
-            var value = _context.Values.FirstOrDefault(x => x.Id == id);
+            var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(value);
         }
 
